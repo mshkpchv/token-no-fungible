@@ -15,6 +15,8 @@ import ConnectButton from './components/ConnectButton';
 import { Web3Provider } from '@ethersproject/providers';
 import { getChainData } from './helpers/utilities';
 
+import CheckBox from "./components/CheckBox";
+
 const SLayout = styled.div`
   position: relative;
   width: 100%;
@@ -177,6 +179,7 @@ const App = () => {
   }
 
   return (
+    <>
     <SLayout>
       <Column maxWidth={1000} spanHeight>
         <Header
@@ -198,8 +201,11 @@ const App = () => {
               </SLanding>
             )}
         </SContent>
+        <CheckBox/>
       </Column>
     </SLayout>
+    
+    </>
   );
 }
 export default App;
