@@ -220,3 +220,6 @@ export const globalStyle = `
     font-size: 16px;
   }
 `
+
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './assets/App.css';

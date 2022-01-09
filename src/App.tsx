@@ -1,58 +1,25 @@
 import * as React from 'react';
-import { useEffect, useState } from "react";
 
-import styled from 'styled-components';
-
+import Navigation from './components/Navigation';
+import FractionalizePage from './components/FractionalizePage';
+import { Routes, Route } from "react-router-dom";
+import { useEffect, useState, useContext } from "react";
 import Web3Modal from 'web3modal';
 // @ts-ignore
 import WalletConnectProvider from '@walletconnect/web3-provider';
-import Column from './components/Column';
-import Wrapper from './components/Wrapper';
-import Header from './components/Header';
-import Loader from './components/Loader';
-import ConnectButton from './components/ConnectButton';
-
 import { Web3Provider } from '@ethersproject/providers';
 import { getChainData } from './helpers/utilities';
 
-const SLayout = styled.div`
-  position: relative;
-  width: 100%;
-  min-height: 100vh;
-  text-align: center;
-`;
-
-const SContent = styled(Wrapper)`
-  width: 100%;
-  height: 100%;
-  padding: 0 16px;
-`;
-
-const SContainer = styled.div`
-  height: 100%;
-  min-height: 200px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  word-break: break-word;
-`;
-
-const SLanding = styled(Column)`
-  height: 600px;
-`;
-
-// @ts-ignore
-const SBalances = styled(SLanding)`
-  height: 100%;
-  & h3 {
-    padding-top: 30px;
-  }
-`;
+import HomeComponentPage from './components/HomComponentPage';
+import ExploreComponentPage from './components/ExploreComponentPage';
+import SingleNFTPage from './components/SingleNFT';
+import MintNFTComponentPage from './components/MintNFTComponentPage';
+import { ConnectedContext } from "./context";
 
 let web3Modal: Web3Modal;
-const App = () => {
 
+
+const App = () => {
   const [provider, setProvider] = useState<any>();
   const [fetching, setFetching] = useState<boolean>(false);
   const [address, setAddress] = useState<string>("");
@@ -82,6 +49,7 @@ const App = () => {
   }
 
   const onConnect = async () => {
+    // console.log("onConnect");
     const provider = await web3Modal.connect();
     setProvider(provider);
 
@@ -177,29 +145,34 @@ const App = () => {
   }
 
   return (
-    <SLayout>
-      <Column maxWidth={1000} spanHeight>
-        <Header
-          connected={connected}
-          address={address}
-          chainId={chainId}
-          killSession={resetApp}
-        />
-        <SContent>
-          {fetching ? (
-            <Column center>
-              <SContainer>
-                <Loader />
-              </SContainer>
-            </Column>
-          ) : (
-              <SLanding center>
-                {!connected && <ConnectButton onClick={onConnect} />}
-              </SLanding>
-            )}
-        </SContent>
-      </Column>
-    </SLayout>
+    <>
+    <ConnectedContext.Provider 
+    value={{
+      connected,
+      address,
+      library
+    }} >
+
+    <Navigation
+      connected={connected}
+      address={address}
+      chainId={chainId}
+      killSession={resetApp}
+      onConnect = {onConnect}
+    />
+
+
+    <Routes>
+        <Route path="/" element={<HomeComponentPage/>} />
+        <Route path="/fraction" element={<FractionalizePage/>} />
+        <Route path="/explore" element={<ExploreComponentPage/>} />
+        <Route path="/about" element={<div> About </div>} />
+        <Route path="/singleNFT" element={<SingleNFTPage/>} />
+        <Route path="/mint" element={ <MintNFTComponentPage/> } />
+      </Routes>
+
+      </ConnectedContext.Provider>
+    </>
   );
 }
 export default App;

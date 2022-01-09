@@ -40,7 +40,7 @@ export function ellipseText(
 
 export function ellipseAddress(
   address: string = "",
-  width: number = 10
+  width: number = 7
 ): string {
   return `${address.slice(0, width)}...${address.slice(-width)}`;
 }
