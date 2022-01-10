@@ -13,9 +13,6 @@ export const IERC721_NFT_IPFS = "https://ipfs.io/ipfs/Qmd9MCGtdVz2miNumBHDbvj8bi
 // fraction operation
 export const FRACTION_FACTORY_ADDRESS = "0x202d263303fA8D37ef770a686e9c806e486AC0Ae"; 
 
-// var exp = BigNumber.from("10").pow(18);
-// const supply = ethers.BigNumber.from("50").mul(exp);
-
 export const WEI_TO_ETHER = BigNumber.from("10").pow(18);
 export const UNIT_CONVERSATION = BigNumber.from("10").pow(18);
 

@@ -32,9 +32,9 @@ const NFTCard = (p : INFTCardProps) => {
           <span className="price-number">{token_id} </span></Card.Text>
       </Card.Body>
     <Card.Body>
-      <Button className='bid-button' onClick={onClickNFTCard}>See</Button>
-      <Card.Link href="/singleNFT" className="bid-button">
-      <EthImage />Fraction</Card.Link>
+      <Button className='bid-button' onClick={onClickNFTCard}>Fraction</Button>
+      {/* <Card.Link href="/singleNFT" className="bid-button"> */}
+      {/* <EthImage />Fraction</Card.Link> */}
     </Card.Body>
   </Card>
   </>

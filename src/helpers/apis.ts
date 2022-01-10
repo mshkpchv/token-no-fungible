@@ -17,7 +17,6 @@ export const fetchOpenseaAssets = async (
       const { assets } = await result.json();
       return assets;
     } catch (error) {
-      // console.error('fetchAssets failed:', error);
       return [];
     }
   };

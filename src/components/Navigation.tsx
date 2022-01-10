@@ -96,17 +96,9 @@ const Navigation = (props: INavigationProps) => {
                     {/* <li>Explore</li> */}
                     
                     <li><Link to="/fraction">Fractionalize</Link> </li>
-                    <Link to="/explore">Explore</Link>
+                    {/* <Link to="/explore">Explore</Link> */}
                     <Link to="/mint">Mint</Link>
-                    {connected  && 
-                    <>
-                    {/* <Link to="/">Fractional</Link> */}
-                    {/* <Link to="/">MyCollection</Link> */}
-                    {/* <Link to="/">Fractionalize</Link> */}
-                      {/* <li>MyCollection</li>  */}
-                      {/* <li>Fractionalize</li> */}
-                    </>
-                    }
+                    
                     { connected && address ? (
                         <SActiveAccount>
                           <SBlockie address={address} />

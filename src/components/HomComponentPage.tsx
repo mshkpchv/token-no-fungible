@@ -15,7 +15,7 @@ const HomeComponentPage = () => {
                     <h1><b>Discover</b>, <b>find</b> and <b>sell</b> extraordinary NFTs.</h1>
                     <h2>Fractional ownership of the world’s most sought after NFTs. Fractional reduces entry costs, increases access, and enables new communities.</h2>
                     <div className="buttons-container">
-                      <Button className="primary-btn">Explore vaults</Button>
+                      <Button className="primary-btn">Explore </Button>
                       <Button className="secondary-btn">Fractionalize NFT</Button>
                     </div>
                 </section>

@@ -94,17 +94,6 @@ const FractionalizeCard = (element:IOpenseaAsset) => {
             <p className="input-name">Symbol</p>
             <Form.Control as="input" aria-label="Symbol text" value={symbol} onChange = { (event) => { setSymbol(event.target.value) } } />
             </InputGroup>
-            <p className="input-name">Reserve price</p>
-            <InputGroup className="price">
-            <InputGroup.Text>
-            <EthImage />ETH</InputGroup.Text>
-            <Form.Control as="input" aria-label="Price text" />
-            </InputGroup>
-            <div className="frame">
-	            <div className="range">
-		        <input type="range" min="0" max="40" />
-	            </div>
-            </div>
             <Button onClick={onFraction} variant="primary">Fraction</Button>{' '}
         </Card.Body>
       </Card>

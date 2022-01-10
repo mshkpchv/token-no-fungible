@@ -1,15 +1,12 @@
 import * as React from 'react';
-import ConnectButton from './ConnectButton';
 
 import { IERC721_NFT_ADDRESS_RINKEBY, IERC721_NFT_ABI, IERC721_NFT_IPFS  } from '../constants';
-
 import { getContract } from '../helpers/ethers';
 
 import { useConnectedContext } from '../context';
 
-import { connect } from 'http2';
-import { Contract } from '@ethersproject/contracts';
 import styled from 'styled-components';
+import Button from 'react-bootstrap/Button';
 
 import Column from './Column';
 import Wrapper from './Wrapper';
@@ -45,30 +42,25 @@ const SLanding = styled(Column)`
 const MintNFTComponentPage = () => {
 
     const {connected ,address, library} =  useConnectedContext();
-    const [nftContract, setNftContract] = React.useState<any>(null);
     const [fetching,setFetching] = React.useState<boolean>(false);
 
     const mintNFT = async() => {
-        setFetching(true);
-        // const contract = getContract(IERC721_NFT_ADDRESS_RINKEBY,IERC721_NFT_ABI.abi,
-        //     library, address);
-        // setNftContract(contract);
-        // await nftContract.mintNFT(address);
-        setFetching(false);
+        if(connected && address && library){
+            setFetching(true);
+            const contract = getContract(IERC721_NFT_ADDRESS_RINKEBY,IERC721_NFT_ABI.abi,
+                library, address);
+            await contract.mintNFT(address,IERC721_NFT_IPFS);
+
+            setFetching(false);
+        }
     }
 
     const onCreation = async () => {
         // const contract = getContract(IERC721_NFT_ADDRESS_RINKEBY,IERC721_NFT_ABI.abi,
-        //     library, address);
-        // setNftContract(contract);
     }
 
     React.useEffect(()=>{
         onCreation();        
-        // setConnected(connected);
-        // setAddress(address);
-
-
     },[])
 
     return (
@@ -76,14 +68,15 @@ const MintNFTComponentPage = () => {
             <SContent>
             {fetching ? (
                 <Column center>
-                <div>misho in the house</div>
+                <div>loading</div>
                 <SContainer>
                     <Loader />
                 </SContainer>
                 </Column>
             ) : (
                 <SLanding center>
-                    { connected && <ConnectButton onClick={mintNFT} /> }
+                    <div>Mint NFT and then see it in fraction page</div>
+                    { connected && <Button className='bid-button' onClick={mintNFT} >Mint NFT</Button> }
                 </SLanding>
                 )}
             </SContent>
